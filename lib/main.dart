@@ -23,9 +23,11 @@ class _MyAppState extends State<MyApp> {
 
   void _answerQuestion() {
     setState(() {
-      _questionIndex++;
-      print('Answer ' + questions[_questionIndex] + 'chosen');
+      if (_questionIndex < questions.length - 1) {
+        _questionIndex++;
+      }
     });
+    print('Answer Chosen');
   }
 
   Widget build(BuildContext context) {
