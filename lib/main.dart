@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import './question.dart';
+import './answer_button.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,21 +36,21 @@ class _MyAppState extends State<MyApp> {
       ),
       body: Column(children: [
         Question(questions[_questionIndex]),
-        RaisedButton(
-          child: Text('Yes'),
-          onPressed: _answerQuestion,
+        AnswerButton(
+          'Yes',
+          _answerQuestion,
         ),
-        RaisedButton(
-          child: Text('Yes'),
-          onPressed: _answerQuestion,
+        AnswerButton(
+          'Maybe',
+          _answerQuestion,
         ),
-        RaisedButton(
-          child: Text('Maybe'),
-          onPressed: _answerQuestion,
+        AnswerButton(
+          'Kinda',
+          _answerQuestion,
         ),
-        RaisedButton(
-          child: Text('Kinda'),
-          onPressed: _answerQuestion,
+        AnswerButton(
+          'Idk',
+          _answerQuestion,
         ),
       ]),
     ));
