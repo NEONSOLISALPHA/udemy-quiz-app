@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AnswerButton extends StatelessWidget {
   final String buttonText;
@@ -10,12 +12,20 @@ class AnswerButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
+      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       child: RaisedButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(18.0),
+        ),
+        padding: EdgeInsets.symmetric(vertical: 10),
         color: Colors.pink[200],
-        textColor: Colors.white,
         child: Text(
           buttonText,
-          style: TextStyle(fontSize: 20),
+          style: GoogleFonts.montserrat(
+              textStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600)),
           textAlign: TextAlign.center,
         ),
         onPressed: onPressFunc,

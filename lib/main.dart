@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import './question.dart';
 import './answer_button.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -47,18 +50,22 @@ class _MyAppState extends State<MyApp> {
 
   Widget build(BuildContext context) {
     return MaterialApp(
+        theme: ThemeData(
+          textTheme:
+              GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),
+        ),
         home: Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.pink[300],
-        title: Text('Some_Title'),
-      ),
-      body: Column(children: [
-        Question(questions[_questionIndex]['question']),
-        ...(questions[_questionIndex]['answers'] as List<String>)
-            .map((answerText) {
-          return AnswerButton(answerText, _answerQuestion);
-        }).toList()
-      ]),
-    ));
+          appBar: AppBar(
+            backgroundColor: Colors.pink[200],
+            title: Text('Some_Title'),
+          ),
+          body: Column(children: [
+            Question(questions[_questionIndex]['question']),
+            ...(questions[_questionIndex]['answers'] as List<String>)
+                .map((answerText) {
+              return AnswerButton(answerText, _answerQuestion);
+            }).toList()
+          ]),
+        ));
   }
 }
