@@ -17,8 +17,23 @@ class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
 
   var questions = [
-    'Are you Dumb?',
-    'Are you sure that you\'re not?',
+    {
+      'question': 'Where is Gamora?',
+      'answers': [
+        'ask her urself.',
+        'why u wanna know?',
+        'who cares?',
+      ]
+    },
+    {
+      'question': 'U like Donuts?',
+      'answers': [
+        'OMG I Love Them!',
+        'they\'re the bane of my fucking existence',
+        'yeah, I like them',
+        'meh',
+      ]
+    },
   ];
 
   void _answerQuestion() {
@@ -34,26 +49,15 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.pink[300],
         title: Text('Some_Title'),
       ),
       body: Column(children: [
-        Question(questions[_questionIndex]),
-        AnswerButton(
-          'Yes',
-          _answerQuestion,
-        ),
-        AnswerButton(
-          'Maybe',
-          _answerQuestion,
-        ),
-        AnswerButton(
-          'Kinda',
-          _answerQuestion,
-        ),
-        AnswerButton(
-          'Idk',
-          _answerQuestion,
-        ),
+        Question(questions[_questionIndex]['question']),
+        ...(questions[_questionIndex]['answers'] as List<String>)
+            .map((answerText) {
+          return AnswerButton(answerText, _answerQuestion);
+        }).toList()
       ]),
     ));
   }

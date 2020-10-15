@@ -11,6 +11,8 @@ class AnswerButton extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: RaisedButton(
+        color: Colors.pink[200],
+        textColor: Colors.white,
         child: Text(
           buttonText,
           style: TextStyle(fontSize: 20),
