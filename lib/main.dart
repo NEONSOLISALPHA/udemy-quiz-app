@@ -16,7 +16,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
 
-  var questions = [
+  static const questions = [
     {
       'question': 'Where is Gamora?',
       'answers': [
