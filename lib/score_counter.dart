@@ -11,16 +11,17 @@ class ScoreCounter extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 15),
       child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Text(
-            'Your Score was $totalScore.',
-            style: GoogleFonts.montserrat(
-              textStyle: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.pink[400]),
-            ),
-          )),
+        alignment: Alignment.bottomCenter,
+        child: Text(
+          'Your Score was $totalScore.',
+          style: GoogleFonts.montserrat(
+            textStyle: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w600,
+                color: Colors.pink[400]),
+          ),
+        ),
+      ),
     );
   }
 }
