@@ -38,6 +38,15 @@ class _MyAppState extends State<MyApp> {
         {'question text': 'Meh', 'score': 4}
       ]
     },
+    {
+      'question': 'What does the fox say?',
+      'answers': [
+        {'question text': 'ringdingdingding', 'score': 5},
+        {'question text': 'ringdingdingding', 'score': 69},
+        {'question text': 'ringdingdingding', 'score': 3},
+        {'question text': 'ringdingdingding', 'score': -1},
+      ]
+    }
   ];
 
   void _answerQuestion(score) {
