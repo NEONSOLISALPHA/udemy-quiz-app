@@ -41,30 +41,40 @@ class _MyAppState extends State<MyApp> {
 
   void _answerQuestion() {
     setState(() {
-      if (_questionIndex < questions.length - 1) {
-        _questionIndex++;
-      }
+      _questionIndex++;
     });
     print('Answer Chosen');
   }
 
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(
-          textTheme:
-              GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),
+      theme: ThemeData(
+        textTheme: GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.pink[200],
+          title: Text('Some_Title'),
         ),
-        home: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.pink[200],
-            title: Text('Some_Title'),
-          ),
-          body: Column(children: [
-            Question(questions[_questionIndex]['question']),
-            ...(questions[_questionIndex]['answers'] as List<String>)
-                .map((answerText) {
-              return AnswerButton(answerText, _answerQuestion);
-            }).toList()
-          ]),
-        ));
+        body: _questionIndex < questions.length
+            ? Column(children: [
+                Question(questions[_questionIndex]['question']),
+                ...(questions[_questionIndex]['answers'] as List<String>)
+                    .map((answerText) {
+                  return AnswerButton(answerText, _answerQuestion);
+                }).toList()
+              ])
+            : Center(
+                child: Text(
+                  'You did it!',
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.pink[300],
+                  ),
+                ),
+              ),
+      ),
+    );
   }
+}
