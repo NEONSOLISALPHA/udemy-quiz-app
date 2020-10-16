@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import './question.dart';
-import './answer_button.dart';
+import './quiz.dart';
+import './result.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,6 +46,13 @@ class _MyAppState extends State<MyApp> {
     print('Answer Chosen');
   }
 
+  void resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+    });
+    print('quiz reset!');
+  }
+
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
@@ -53,27 +60,14 @@ class _MyAppState extends State<MyApp> {
       ),
       home: Scaffold(
         appBar: AppBar(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           backgroundColor: Colors.pink[200],
           title: Text('Some_Title'),
         ),
         body: _questionIndex < questions.length
-            ? Column(children: [
-                Question(questions[_questionIndex]['question']),
-                ...(questions[_questionIndex]['answers'] as List<String>)
-                    .map((answerText) {
-                  return AnswerButton(answerText, _answerQuestion);
-                }).toList()
-              ])
-            : Center(
-                child: Text(
-                  'You did it!',
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.pink[300],
-                  ),
-                ),
-              ),
+            ? Quiz(questions, _questionIndex, _answerQuestion)
+            : Result('You did It!', 'Reset?', resetQuiz),
       ),
     );
   }
