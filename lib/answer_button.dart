@@ -15,7 +15,7 @@ class AnswerButton extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       child: RaisedButton(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18.0),
+          borderRadius: BorderRadius.circular(25.0),
         ),
         padding: EdgeInsets.symmetric(vertical: 10),
         color: Colors.pink[200],
