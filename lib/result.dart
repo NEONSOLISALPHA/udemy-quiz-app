@@ -1,52 +1,47 @@
+import 'package:Quiz_App/reset_button.dart';
+import 'package:Quiz_App/score_counter.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Result extends StatelessWidget {
-  final String resultText;
+  final int totalScore;
   final String buttonText;
   final Function buttonFunc;
 
-  Result(this.resultText, this.buttonText, this.buttonFunc);
+  Result(this.totalScore, this.buttonText, this.buttonFunc);
+
+  String getText(int finalScore) {
+    if (finalScore < 10) {
+      return 'LOL What a loser';
+    } else if (finalScore < 13) {
+      return 'Meh, U are Okay..ish';
+    } else {
+      return 'U, My dude are pretty awesome';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+    return Center(
+      child: ListView(
+        shrinkWrap: true,
         children: [
           Container(
             child: Center(
               child: Text(
-                'You did it!',
+                getText(totalScore),
+                textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 40,
+                  fontSize: 50,
                   fontWeight: FontWeight.w700,
                   color: Colors.pink[300],
                 ),
               ),
             ),
           ),
-          Container(
-            width: double.infinity,
-            margin: EdgeInsets.all(15),
-            child: RaisedButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              color: Colors.pink[200],
-              padding: EdgeInsets.symmetric(vertical: 3),
-              child: Text(
-                buttonText,
-                style: GoogleFonts.montserrat(
-                  textStyle: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white),
-                ),
-              ),
-              onPressed: buttonFunc,
-            ),
-          )
-        ]);
+          ResetButton(buttonText, buttonFunc),
+          ScoreCounter(totalScore)
+        ],
+      ),
+    );
   }
 }

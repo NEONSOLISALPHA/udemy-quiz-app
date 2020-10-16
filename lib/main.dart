@@ -18,30 +18,32 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+  var _totalScore = 0;
 
   static const questions = [
     {
       'question': 'Where is Gamora?',
       'answers': [
-        'ask her urself.',
-        'why u wanna know?',
-        'who cares?',
+        {'question text': 'ask her urself.', 'score': 4},
+        {'question text': 'why u wanna know?', 'score': 5},
+        {'question text': 'who cares?', 'score': 7},
       ]
     },
     {
       'question': 'U like Donuts?',
       'answers': [
-        'OMG I Love Them!',
-        'they\'re the bane of my fucking existence',
-        'yeah, I like them',
-        'meh',
+        {'question text': 'OMG I Love Them!', 'score': 6},
+        {'question text': 'Bane of my fucking existence.', 'score': 3},
+        {'question text': 'Yeah sure', 'score': 7},
+        {'question text': 'Meh', 'score': 4}
       ]
     },
   ];
 
-  void _answerQuestion() {
+  void _answerQuestion(score) {
     setState(() {
       _questionIndex++;
+      _totalScore += score;
     });
     print('Answer Chosen');
   }
@@ -49,6 +51,7 @@ class _MyAppState extends State<MyApp> {
   void resetQuiz() {
     setState(() {
       _questionIndex = 0;
+      _totalScore = 0;
     });
     print('quiz reset!');
   }
@@ -67,7 +70,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: _questionIndex < questions.length
             ? Quiz(questions, _questionIndex, _answerQuestion)
-            : Result('You did It!', 'Reset?', resetQuiz),
+            : Result(_totalScore, 'Reset?', resetQuiz),
       ),
     );
   }
